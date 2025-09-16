@@ -1,191 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Absoluting Inc</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Absoluting – Cloud, DevOps, AI & Staffing</title>
+  <meta name="description" content="Absoluting helps teams ship faster with cloud, DevOps, AI/ML, RPA, blockchain, custom software, and staffing solutions." />
+  <meta name="theme-color" content="#0a3d62" />
   <style>
-    /* ===== CSS Styling ===== */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
+    :root{
+      --brand:#0a3d62;
+      --brand-2:#136a8a;
+      --accent:#ff7a18;
+      --ink:#1f2937;
+      --muted:#6b7280;
+      --bg:#ffffff;
+      --bg-alt:#f7f9fc;
+      --ring: 0 0 0 3px rgba(19,106,138,.25);
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --shadow-sm:0 6px 18px rgba(0,0,0,.06);
+      --container: 1120px;
     }
-    header {
-      background: #002244;
-      color: #fff;
-      padding: 20px 10%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{
+      font: 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif;
+      color:var(--ink);
+      background:var(--bg);
     }
-    header .logo {
-      font-size: 1.8em;
-      font-weight: bold;
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--container);margin:auto;padding:0 20px}
+    .btn{
+      display:inline-block;border:none;border-radius:12px;padding:12px 18px;
+      background:var(--accent);color:#fff;font-weight:600;cursor:pointer;
+      box-shadow:var(--shadow-sm);transition:.2s transform ease,.2s box-shadow ease
     }
-    header nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 15px;
-      font-size: 1em;
+    .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+    .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.2);color:#fff;font-size:12px;letter-spacing:.3px}
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #eef1f6;
+      backdrop-filter:saturate(180%) blur(8px)
     }
-    header nav a:hover {
-      text-decoration: underline;
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .brand-logo{
+      width:34px;height:34px;border-radius:9px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      display:grid;place-items:center;color:#fff;font-weight:800
     }
-    .hero {
-      background: linear-gradient(to right, #004488, #0077aa);
-      color: #fff;
-      text-align: center;
-      padding: 100px 10%;
-    }
-    .hero h1 {
-      font-size: 2.8em;
-      margin-bottom: 20px;
-    }
-    .hero p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-    }
-    .btn {
-      background: #ff6600;
-      color: #fff;
-      padding: 12px 25px;
-      text-decoration: none;
-      font-size: 1em;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .btn:hover {
-      background: #e65c00;
-    }
-    .section {
-      padding: 60px 10%;
-    }
-    .section-light {
-      background: #f9f9f9;
-    }
-    .section h2 {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-    .section h3 {
-      font-size: 1.4em;
-      margin-bottom: 15px;
-    }
-    .services-list, .faq-list {
-      list-style: none;
-      padding: 0;
-    }
-    .services-list li, .faq-list li {
-      margin-bottom: 15px;
-    }
-    footer {
-      background: #222;
-      color: #ccc;
-      padding: 40px 10%;
-      text-align: center;
-    }
-    footer a {
-      color: #ff6600;
-      text-decoration: none;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-    .contact-info p {
-      margin: 5px 0;
-    }
-    @media (max-width: 768px) {
-      header, .hero, .section, footer {
-        padding: 20px;
+    .nav-links{display:flex;gap:20px}
+    .nav-links a{color:var(--ink);font-weight:600}
+    .hamburger{display:none;background:none;border:none;font-size:28px;line-height:1}
+    @media (max-width:900px){
+      .hamburger{display:block}
+      .nav-links{
+        position:fixed;inset:64px 0 auto 0;background:#fff;border-top:1px solid #eef1f6;
+        display:none;flex-direction:column;padding:14px 20px
       }
-      header nav {
-        display: none; /* mobile nav could be added */
-      }
+      .nav-links.open{display:flex}
     }
+
+    /* Hero */
+    .hero{
+      background:
+        radial-gradient(1200px 400px at 80% -50%, rgba(19,106,138,.35), transparent 70%),
+        linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#fff;
+      padding:76px 0 96px 0;
+    }
+    .hero h1{font-size:clamp(32px,5vw,48px);line-height:1.1;margin:12px 0 8px}
+    .hero p{color:#e9f2f8;max-width:760px}
+    .hero .actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+    .metric{
+      background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+      padding:16px;border-radius:12px
+    }
+    .metric b{display:block;font-size:22px}
+
+    /* Sections */
+    section{padding:72px 0}
+    .section-title{font-size:28px;margin:0 0 10px}
+    .section-sub{color:var(--muted);margin:0 0 26px}
+    .grid{display:grid;gap:18px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:900px){
+      .grid.cols-3,.grid.cols-2{grid-template-columns:1fr}
+    }
+    .card{
+      background:#fff;border:1px solid #eef1f6;border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:20px;transition:.25s transform ease,.25s box-shadow ease
+    }
+    .card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.12)}
+    .icon{
+      width:38px;height:38px;border-radius:10px;
+      background:linear-gradient(135deg,#e9f2ff,#f3fff5);display:grid;place-items:center;margin-bottom:10px
+    }
+    .muted{color:var(--muted)}
+    .list{padding-left:18px;margin:0}
+    .list li{margin:6px 0}
+
+    .strip{background:var(--bg-alt)}
+    .badge{display:inline-block;background:#eaf4ff;color:#0b5cab;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.25px}
+
+    /* CTA */
+    .cta{
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#fff;border-radius:var(--radius);padding:32px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap
+    }
+    .cta p{margin:0;color:#e6f4ff}
+    .cta .btn{background:#fff;color:var(--brand)}
+
+    /* Footer */
+    footer{padding:36px 0;color:var(--muted);border-top:1px solid #eef1f6}
+    .foot{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .foot small{color:#8a93a0}
+
+    /* Utilities + effects */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease, transform .5s ease}
+    .reveal.show{opacity:1;transform:none}
+    .active-link{color:var(--brand)}
+    .kbd{font: 12px/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:#f1f5f9;border:1px solid #e2e8f0;border-bottom-width:2px;border-radius:6px;padding:2px 6px}
   </style>
 </head>
 <body>
+  <a class="sr-only" href="#main">Skip to content</a>
 
-  <!-- ===== HEADER ===== -->
+  <!-- Header -->
   <header>
-    <div class="logo">Absoluting Inc</div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true">A</div>
+        <div>Absoluting</div>
+      </div>
+      <nav aria-label="Primary">
+        <button class="hamburger" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu">☰</button>
+        <div id="menu" class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#solutions">Solutions</a>
+          <a href="#about">About</a>
+          <a href="#industries">Industries</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
   </header>
 
-  <!-- ===== HERO SECTION ===== -->
+  <!-- Hero -->
   <section id="home" class="hero">
-    <h1>Welcome to Absoluting Inc</h1>
-    <p>We drive digital transformation through technology innovation and tailored IT solutions.</p>
-    <button class="btn" onclick="scrollToContact()">Get Started</button>
-  </section>
+    <div class="container">
+      <span class="pill">Cloud • DevOps • AI • Staffing</span>
+      <h1>Build faster. Operate smarter. Scale securely.</h1>
+      <p>Absoluting helps teams modernize on the cloud, automate delivery with DevOps, unlock insights with data & AI, and close skill gaps with expert staffing.</p>
+      <div class="actions">
+        <a class="btn" href="#services">Explore Services</a>
+        <a class="btn ghost" href="#contact">Talk to us</a>
+      </div>
 
-  <!-- ===== ABOUT SECTION ===== -->
-  <section id="about" class="section section-light">
-    <h2>About Us</h2>
-    <p>At Absoluting Inc, we specialize in providing IT consulting, software development, and staffing services that empower businesses to scale and innovate. Our team combines technical expertise with strategic vision to deliver measurable results.</p>
-
-    <h3>Our Mission</h3>
-    <p>To enable organizations to thrive in the digital era by connecting them with cutting-edge technologies and skilled professionals.</p>
-
-    <h3>Our Expertise</h3>
-    <p>We cover a broad spectrum including cloud computing, DevOps, full-stack development, data analytics, and enterprise IT solutions.</p>
-  </section>
-
-  <!-- ===== SERVICES SECTION ===== -->
-  <section id="services" class="section">
-    <h2>Our Services</h2>
-    <ul class="services-list">
-      <li><strong>IT Consulting</strong> – Strategic guidance to align your technology with business goals.</li>
-      <li><strong>Custom Software Development</strong> – Tailored applications designed to solve complex challenges.</li>
-      <li><strong>Cloud Solutions</strong> – Migration, management, and optimization of cloud environments.</li>
-      <li><strong>Data & Analytics</strong> – Insights through data engineering, visualization, and AI solutions.</li>
-      <li><strong>IT Staffing</strong> – Connecting you with top-tier professionals for short-term and long-term projects.</li>
-    </ul>
-  </section>
-
-  <!-- ===== FAQ SECTION ===== -->
-  <section class="section section-light">
-    <h2>F.A.Q</h2>
-    <ul class="faq-list">
-      <li><strong>What industries do you serve?</strong> Finance, healthcare, retail, education, and technology sectors.</li>
-      <li><strong>Do you provide cloud migration?</strong> Yes, we handle end-to-end cloud migration and management.</li>
-      <li><strong>How do you ensure quality?</strong> Rigorous testing, best practices, and experienced teams ensure success.</li>
-      <li><strong>Can you help with staffing?</strong> Absolutely, we provide top talent for a wide range of IT roles.</li>
-    </ul>
-  </section>
-
-  <!-- ===== CONTACT SECTION ===== -->
-  <section id="contact" class="section">
-    <h2>Contact Us</h2>
-    <div class="contact-info">
-      <p><strong>Address:</strong> 123 Innovation Drive, Tech City, USA</p>
-      <p><strong>Email:</strong> info@absoluting.com</p>
-      <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+      <div class="metrics">
+        <div class="metric"><b>100+ </b><span class="muted">projects delivered</span></div>
+        <div class="metric"><b>99.9%</b><span class="muted">cloud uptime targets</span></div>
+        <div class="metric"><b>2–4x</b><span class="muted">faster release cadence</span></div>
+      </div>
     </div>
-    <p>We’d love to hear about your next project or staffing needs. Reach out today!</p>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <main id="main">
+    <!-- Services -->
+    <section id="services" class="container reveal">
+      <h2 class="section-title">Core Services</h2>
+      <p class="section-sub">Strategy, engineering, and enablement to ship with confidence.</p>
+
+      <div class="grid cols-3">
+        <!-- Cloud -->
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 18h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6 9a4 4 0 0 0 1 9z" stroke="#0b5cab" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Cloud Services</h3>
+          <p class="muted">Migrations, cost optimization, reliability engineering, and managed platforms on AWS, Azure, and GCP.</p>
+          <ul class="list">
+            <li>Landing zones & security baselines</li>
+            <li>Kubernetes & container platforms</li>
+            <li>FinOps & observability</li>
+          </ul>
+        </article>
+
+        <!-- DevOps -->
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 12h6a3 3 0 1 0 0-6H3m18 6h-6a3 3 0 1 1 0 6h6" stroke="#0b5cab" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>DevOps & Automation</h3>
+          <p class="muted">CI/CD, infrastructure-as-code, test automation, and platform engineering to accelerate delivery.</p>
+          <ul class="list">
+            <li>GitOps & pipelines</li>
+            <li>Terraform modules & IaC guardrails</li>
+            <li>SRE practices & SLIs/SLOs</li>
+          </ul>
+        </article>
+
+        <!-- Software -->
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="#0b5cab" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Custom Software</h3>
+          <p class="muted">Full-stack web & mobile apps, APIs, and integrations engineered for scale and maintainability.</p>
+          <ul class="list">
+            <li>Product discovery & UX</li>
+            <li>Secure, standards-based APIs</li>
+            <li>Automated QA</li>
+          </ul>
+        </article>
+
+        <!-- Data & AI -->
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#0b5cab" stroke-width="2"/><path d="M6 20a6 6 0 0 1 12 0" stroke="#0b5cab" stroke-width="2"/></svg>
+          </div>
+          <h3>Data & AI</h3>
+          <p class="muted">Modern data stacks, analytics, and practical AI/ML to drive decisions and automation.</p>
+          <ul class="list">
+            <li>Warehouses & lakehouses</li>
+            <li>ML pipelines & MLOps</li>
+            <li>BI dashboards & KPI design</li>
+          </ul>
+        </article>
+
+        <!-- RPA -->
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#0b5cab" stroke-width="2"/><path d="M7 12h10" stroke="#0b5cab" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>RPA & Workflow</h3>
+          <p class="muted">Automate repetitive tasks with bots and event-driven workflows that integrate your tools.</p>
+          <ul class="list">
+            <li>Process discovery</li>
+            <li>Bot design & governance</li>
+            <li>Audit & compliance</li>
+          </ul>
+        </article>
+
+        <!-- Staffing -->
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z" stroke="#0b5cab" stroke-width="2"/><path d="M4 20a8 8 0 0 1 16 0" stroke="#0b5cab" stroke-width="2"/></svg>
+          </div>
+          <h3>US IT Staffing</h3>
+          <p class="muted">On-demand engineers, SREs, analysts, PMs, and architects—contract or full-time.</p>
+          <ul class="list">
+            <li>Rigorous technical screening</li>
+            <li>Culture & compliance fit</li>
+            <li>Rapid shortlists</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Solutions (AI, Blockchain, Mobile, Security) -->
+    <section id="solutions" class="strip reveal">
+      <div class="container">
+        <h2 class="section-title">Solution Accelerators</h2>
+        <p class="section-sub">Pre-built patterns and templates to reduce time-to-value.</p>
+
+        <div class="grid cols-2">
+          <article class="card">
+            <span class="badge">AI</span>
+            <h3>Conversational AI & Assistants</h3>
+            <p class="muted">Secure, domain-tuned AI agents with retrieval, function calls, and human-in-the-loop review.</p>
+            <ul class="list">
+              <li>Knowledge retrieval & guardrails</li>
+              <li>Evaluation & monitoring</li>
+              <li>Private deployment options</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="badge">Blockchain</span>
+            <h3>Ledger & Smart Contracts</h3>
+            <p class="muted">Use distributed ledgers for auditability, asset tokenization, and partner workflows.</p>
+            <ul class="list">
+              <li>Contract design & testing</li>
+              <li>Key management & policy</li>
+              <li>Chain analytics</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="badge">Mobile</span>
+            <h3>Cross-Platform Apps</h3>
+            <p class="muted">iOS/Android apps powered by shared APIs and CI pipelines for rapid releases.</p>
+            <ul class="list">
+              <li>Offline-first patterns</li>
+              <li>Store readiness & telemetry</li>
+              <li>Design systems</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="badge">Security</span>
+            <h3>Security by Design</h3>
+            <p class="muted">Threat modeling, zero-trust networking, and automated policy enforcement from day one.</p>
+            <ul class="list">
+              <li>Identity & secrets</li>
+              <li>Runtime hardening</li>
+              <li>Compliance & audit packs</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="container reveal">
+      <h2 class="section-title">About Absoluting</h2>
+      <p class="section-sub">We’re builders and partners. Our teams combine product thinking with operational excellence.</p>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>How we work</h3>
+          <ul class="list">
+            <li>Discovery workshops to align goals and KPIs</li>
+            <li>Architecture that balances speed with safety</li>
+            <li>Transparent delivery with demos and metrics</li>
+            <li>Enablement so your team owns the outcome</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Tooling we love</h3>
+          <p class="muted">AWS • Azure • GCP • Kubernetes • Terraform • GitHub Actions • Argo • Databricks • dbt • Kafka • Postgres</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Industries -->
+    <section id="industries" class="strip reveal">
+      <div class="container">
+        <h2 class="section-title">Industries</h2>
+        <p class="section-sub">Experience across regulated and high-growth sectors.</p>
+        <div class="grid cols-3">
+          <div class="card"><h3>Healthcare</h3><p class="muted">Interoperability, PHI protection, and analytics for outcomes.</p></div>
+          <div class="card"><h3>Finance</h3><p class="muted">Resilient platforms with strong controls and audit trails.</p></div>
+          <div class="card"><h3>Media & Retail</h3><p class="muted">Personalization, recommendations, and real-time insights.</p></div>
+          <div class="card"><h3>Manufacturing</h3><p class="muted">IoT telemetry, predictive maintenance, and MES integration.</p></div>
+          <div class="card"><h3>Public Sector</h3><p class="muted">Security-first systems and accessible digital services.</p></div>
+          <div class="card"><h3>Startups</h3><p class="muted">From MVP to scale without sacrificing quality.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact (no form per your request) -->
+    <section id="contact" class="container reveal">
+      <div class="cta">
+        <div>
+          <h3 style="margin:0">Let’s ship something great.</h3>
+          <p>Email <b>hello@absoluting.com</b> or call <b>+1 (555) 123-4567</b>. Press <span class="kbd">G</span> then <span class="kbd">C</span> to jump here.</p>
+        </div>
+        <a class="btn" href="#home" aria-label="Back to top">Back to top ↑</a>
+      </div>
+    </section>
+  </main>
+
   <footer>
-    <p>&copy; 2025 Absoluting Inc. All Rights Reserved.</p>
-    <p><a href="#home">Home</a> • <a href="#about">About</a> • <a href="#services">Services</a> • <a href="#contact">Contact</a></p>
+    <div class="container foot">
+      <div class="brand" aria-label="Absoluting">
+        <div class="brand-logo" aria-hidden="true">A</div>
+        <small>© <span id="y"></span> Absoluting. All rights reserved.</small>
+      </div>
+      <small>Made with performance in mind • No external deps</small>
+    </div>
   </footer>
 
-  <!-- ===== JAVASCRIPT ===== -->
   <script>
-    // Smooth scroll to Contact section
-    function scrollToContact() {
-      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-    }
-  </script>
+    // ===== Simple SPA niceties (no external JS) =====
+    // Mobile menu toggle
+    const btn = document.querySelector('.hamburger');
+    const menu = document.getElementById('menu');
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
 
+    // Smooth scroll for in-page links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+      })
+    });
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+      })
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Scroll spy (highlight active nav)
+    const sections = ['home','services','solutions','about','industries','contact']
+      .map(id=>document.getElementById(id)).filter(Boolean);
+    const links = [...document.querySelectorAll('.nav-links a')];
+    const spy = new IntersectionObserver((ents)=>{
+      ents.forEach(ent=>{
+        if(ent.isIntersecting){
+          links.forEach(l=>l.classList.toggle('active-link', l.getAttribute('href')==='#'+ent.target.id));
+        }
+      })
+    },{rootMargin:'-60% 0px -35% 0px', threshold:0});
+    sections.forEach(s=>spy.observe(s));
+
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Keyboard shortcut to Contact (G then C)
+    let _g = false;
+    window.addEventListener('keydown', (e)=>{
+      if(e.key.toLowerCase()==='g'){ _g = true; setTimeout(()=>_g=false,800); }
+      else if(_g && e.key.toLowerCase()==='c'){ _g=false; document.getElementById('contact').scrollIntoView({behavior:'smooth'}); }
+    });
+  </script>
 </body>
 </html>
