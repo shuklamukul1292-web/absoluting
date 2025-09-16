@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Absoluting – Cloud, DevOps, AI & Staffing</title>
-  <meta name="description" content="Absoluting helps teams ship faster with cloud, DevOps, AI/ML, RPA, blockchain, custom software, and staffing solutions." />
+  <meta name="description" content="Absoluting helps teams modernize on the cloud, automate with DevOps, unlock insights with Data & AI, and scale with expert staffing." />
   <meta name="theme-color" content="#0a3d62" />
   <style>
     :root{
@@ -15,7 +15,6 @@
       --muted:#6b7280;
       --bg:#ffffff;
       --bg-alt:#f7f9fc;
-      --ring: 0 0 0 3px rgba(19,106,138,.25);
       --radius:16px;
       --shadow:0 10px 30px rgba(0,0,0,.08);
       --shadow-sm:0 6px 18px rgba(0,0,0,.06);
@@ -64,14 +63,32 @@
       .nav-links.open{display:flex}
     }
 
+    /* ---------- Background image assets (data URIs) ---------- */
+    /* dotted overlay (white dots, semi-transparent) */
+    .bg-dots{
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='2' cy='2' r='1.6' fill='white' fill-opacity='0.18'/%3E%3C/svg%3E");
+      background-size:24px 24px;
+    }
+    /* soft grid lines (brand tint) */
+    .bg-grid{
+      background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M40 0H0V40' stroke='rgb(11,92,171)' stroke-opacity='0.08' stroke-width='1'/%3E%3C/svg%3E\");
+      background-size:40px 40px;
+    }
+    /* wave separator (white, translucent) — used via ::before/::after */
+    .wave-img{
+      --wave: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath d='M0,80 C240,120 360,0 600,40 C840,80 960,160 1200,120 L1200,200 L0,200Z' fill='white' fill-opacity='0.14'/%3E%3C/svg%3E\");
+    }
+
     /* Hero */
     .hero{
+      position:relative;
       background:
-        radial-gradient(1200px 400px at 80% -50%, rgba(19,106,138,.35), transparent 70%),
         linear-gradient(135deg,var(--brand),var(--brand-2));
       color:#fff;
-      padding:76px 0 96px 0;
+      padding:76px 0 120px 0;
+      overflow:hidden;
     }
+    .hero .overlay-dots{position:absolute;inset:0;opacity:.8;pointer-events:none}
     .hero h1{font-size:clamp(32px,5vw,48px);line-height:1.1;margin:12px 0 8px}
     .hero p{color:#e9f2f8;max-width:760px}
     .hero .actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
@@ -81,6 +98,11 @@
       padding:16px;border-radius:12px
     }
     .metric b{display:block;font-size:22px}
+    .hero.wave-img::after{
+      content:"";position:absolute;left:0;right:0;bottom:-1px;height:160px;
+      background-image:var(--wave);background-repeat:no-repeat;background-position:bottom center;background-size:100% 100%;
+      pointer-events:none
+    }
 
     /* Sections */
     section{padding:72px 0}
@@ -105,16 +127,26 @@
     .list{padding-left:18px;margin:0}
     .list li{margin:6px 0}
 
-    .strip{background:var(--bg-alt)}
-    .badge{display:inline-block;background:#eaf4ff;color:#0b5cab;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.25px}
+    .strip{background:var(--bg-alt);position:relative;overflow:hidden}
+    .strip::before{
+      content:"";position:absolute;inset:0;opacity:.6;pointer-events:none
+    }
+    /* attach the grid image to the strip pseudo element */
+    .strip::before{background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M40 0H0V40' stroke='rgb(11,92,171)' stroke-opacity='0.07' stroke-width='1'/%3E%3C/svg%3E\"); background-size:40px 40px}
 
     /* CTA */
     .cta{
       background:linear-gradient(135deg,var(--brand),var(--brand-2));
-      color:#fff;border-radius:var(--radius);padding:32px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap
+      color:#fff;border-radius:var(--radius);padding:32px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+      position:relative;overflow:hidden
     }
     .cta p{margin:0;color:#e6f4ff}
     .cta .btn{background:#fff;color:var(--brand)}
+    .cta.wave-img::before{
+      content:"";position:absolute;left:0;right:0;top:-1px;height:140px;
+      background-image:var(--wave);transform:scaleY(-1);background-repeat:no-repeat;background-position:top center;background-size:100% 100%;
+      opacity:.8;pointer-events:none
+    }
 
     /* Footer */
     footer{padding:36px 0;color:var(--muted);border-top:1px solid #eef1f6}
@@ -153,8 +185,10 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section id="home" class="hero">
+  <!-- Hero with background images -->
+  <section id="home" class="hero wave-img">
+    <!-- dotted overlay image -->
+    <div class="overlay-dots bg-dots"></div>
     <div class="container">
       <span class="pill">Cloud • DevOps • AI • Staffing</span>
       <h1>Build faster. Operate smarter. Scale securely.</h1>
@@ -265,7 +299,7 @@
       </div>
     </section>
 
-    <!-- Solutions (AI, Blockchain, Mobile, Security) -->
+    <!-- Solutions (with subtle grid background image) -->
     <section id="solutions" class="strip reveal">
       <div class="container">
         <h2 class="section-title">Solution Accelerators</h2>
@@ -341,7 +375,7 @@
       </div>
     </section>
 
-    <!-- Industries -->
+    <!-- Industries (grid background) -->
     <section id="industries" class="strip reveal">
       <div class="container">
         <h2 class="section-title">Industries</h2>
@@ -359,7 +393,7 @@
 
     <!-- Contact (no form per your request) -->
     <section id="contact" class="container reveal">
-      <div class="cta">
+      <div class="cta wave-img">
         <div>
           <h3 style="margin:0">Let’s ship something great.</h3>
           <p>Email <b>hello@absoluting.com</b> or call <b>+1 (555) 123-4567</b>. Press <span class="kbd">G</span> then <span class="kbd">C</span> to jump here.</p>
@@ -375,7 +409,7 @@
         <div class="brand-logo" aria-hidden="true">A</div>
         <small>© <span id="y"></span> Absoluting. All rights reserved.</small>
       </div>
-      <small>Made with performance in mind • No external deps</small>
+      <small>Made lightweight • All assets in one file</small>
     </div>
   </footer>
 
