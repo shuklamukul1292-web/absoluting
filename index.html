@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Absoluting Inc</title>
+  <style>
+    /* ===== CSS Styling ===== */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    header {
+      background: #002244;
+      color: #fff;
+      padding: 20px 10%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1em;
+    }
+    header nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      background: linear-gradient(to right, #004488, #0077aa);
+      color: #fff;
+      text-align: center;
+      padding: 100px 10%;
+    }
+    .hero h1 {
+      font-size: 2.8em;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+    .btn {
+      background: #ff6600;
+      color: #fff;
+      padding: 12px 25px;
+      text-decoration: none;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #e65c00;
+    }
+    .section {
+      padding: 60px 10%;
+    }
+    .section-light {
+      background: #f9f9f9;
+    }
+    .section h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .section h3 {
+      font-size: 1.4em;
+      margin-bottom: 15px;
+    }
+    .services-list, .faq-list {
+      list-style: none;
+      padding: 0;
+    }
+    .services-list li, .faq-list li {
+      margin-bottom: 15px;
+    }
+    footer {
+      background: #222;
+      color: #ccc;
+      padding: 40px 10%;
+      text-align: center;
+    }
+    footer a {
+      color: #ff6600;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .contact-info p {
+      margin: 5px 0;
+    }
+    @media (max-width: 768px) {
+      header, .hero, .section, footer {
+        padding: 20px;
+      }
+      header nav {
+        display: none; /* mobile nav could be added */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="logo">Absoluting Inc</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section id="home" class="hero">
+    <h1>Welcome to Absoluting Inc</h1>
+    <p>We drive digital transformation through technology innovation and tailored IT solutions.</p>
+    <button class="btn" onclick="scrollToContact()">Get Started</button>
+  </section>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section id="about" class="section section-light">
+    <h2>About Us</h2>
+    <p>At Absoluting Inc, we specialize in providing IT consulting, software development, and staffing services that empower businesses to scale and innovate. Our team combines technical expertise with strategic vision to deliver measurable results.</p>
+
+    <h3>Our Mission</h3>
+    <p>To enable organizations to thrive in the digital era by connecting them with cutting-edge technologies and skilled professionals.</p>
+
+    <h3>Our Expertise</h3>
+    <p>We cover a broad spectrum including cloud computing, DevOps, full-stack development, data analytics, and enterprise IT solutions.</p>
+  </section>
+
+  <!-- ===== SERVICES SECTION ===== -->
+  <section id="services" class="section">
+    <h2>Our Services</h2>
+    <ul class="services-list">
+      <li><strong>IT Consulting</strong> – Strategic guidance to align your technology with business goals.</li>
+      <li><strong>Custom Software Development</strong> – Tailored applications designed to solve complex challenges.</li>
+      <li><strong>Cloud Solutions</strong> – Migration, management, and optimization of cloud environments.</li>
+      <li><strong>Data & Analytics</strong> – Insights through data engineering, visualization, and AI solutions.</li>
+      <li><strong>IT Staffing</strong> – Connecting you with top-tier professionals for short-term and long-term projects.</li>
+    </ul>
+  </section>
+
+  <!-- ===== FAQ SECTION ===== -->
+  <section class="section section-light">
+    <h2>F.A.Q</h2>
+    <ul class="faq-list">
+      <li><strong>What industries do you serve?</strong> Finance, healthcare, retail, education, and technology sectors.</li>
+      <li><strong>Do you provide cloud migration?</strong> Yes, we handle end-to-end cloud migration and management.</li>
+      <li><strong>How do you ensure quality?</strong> Rigorous testing, best practices, and experienced teams ensure success.</li>
+      <li><strong>Can you help with staffing?</strong> Absolutely, we provide top talent for a wide range of IT roles.</li>
+    </ul>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <p><strong>Address:</strong> 123 Innovation Drive, Tech City, USA</p>
+      <p><strong>Email:</strong> info@absoluting.com</p>
+      <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+    </div>
+    <p>We’d love to hear about your next project or staffing needs. Reach out today!</p>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>&copy; 2025 Absoluting Inc. All Rights Reserved.</p>
+    <p><a href="#home">Home</a> • <a href="#about">About</a> • <a href="#services">Services</a> • <a href="#contact">Contact</a></p>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // Smooth scroll to Contact section
+    function scrollToContact() {
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
